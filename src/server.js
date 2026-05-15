@@ -1,18 +1,14 @@
-require('dotenv').config();
-
 const app = require('./app');
-const db = require('./config/db');
+const db = require('./config/db.js');
 
 const PORT = process.env.PORT || 3000;
 
-async function iniciarServidor() {
+const iniciarServidor = async () => {
     try {
 
-        const connection = await db.getConnection();
+        await db.connect();
 
-        console.log('MySQL conectado correctamente');
-
-        connection.release();
+        console.log('PostgreSQL conectado');
 
         app.listen(PORT, () => {
             console.log(`Servidor corriendo en puerto ${PORT}`);
@@ -20,10 +16,10 @@ async function iniciarServidor() {
 
     } catch (error) {
 
-        console.log('Error MySQL');
+        console.log('Error PostgreSQL');
         console.log(error);
 
     }
-}
+};
 
 iniciarServidor();
