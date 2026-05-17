@@ -1,0 +1,160 @@
+Diccionario de Datos — Sistema Control Agua Rural
+Tabla: roles
+Campo	Tipo	Restricción	Descripción
+id_rol	SERIAL	PK	Identificador único del rol
+nombre_rol	VARCHAR(50)	UNIQUE, NOT NULL	
+Nombre del rol del usuario descripcion	TEXT	NULL	Descripción del rol
+
+Tabla: usuarios
+Campo	Tipo	Restricción	Descripción
+id_usuario	SERIAL	PK	Identificador único del usuario
+nombre_completo	VARCHAR(150)	NOT NULL	Nombre completo del usuario
+usuario	VARCHAR(50)	UNIQUE, NOT NULL	Nombre de acceso/login
+correo	VARCHAR(150)	UNIQUE	Correo electrónico
+password_hash	TEXT	NOT NULL	Contraseña cifrada
+telefono	VARCHAR(20)	NULL	Número telefónico
+id_rol	INT	FK	Relación con tabla roles
+estado	BOOLEAN	DEFAULT TRUE	Estado del usuario
+fecha_creacion	TIMESTAMP	DEFAULT CURRENT_TIMESTAMP	Fecha de creación
+
+Tabla: auditoria
+Campo	Tipo	Restricción	Descripción
+id_auditoria	SERIAL	PK	Identificador de auditoría
+usuario_id	INT	FK	Usuario que realizó la acción
+accion	VARCHAR(100)	NOT NULL	Acción ejecutada
+tabla_afectada	VARCHAR(100)	NULL	Tabla modificada
+detalle	TEXT	NULL	Descripción del evento
+fecha	TIMESTAMP	DEFAULT CURRENT_TIMESTAMP	Fecha del registro
+
+Tabla: sectores
+Campo	Tipo	Restricción	Descripción
+id_sector	SERIAL	PK	Identificador del sector
+nombre_sector	VARCHAR(100)	UNIQUE, NOT NULL	Nombre del sector
+descripcion	TEXT	NULL	Descripción del sector
+estado	VARCHAR(20)	DEFAULT 'ACTIVO'	Estado del sector
+
+Tabla: familias
+Campo	Tipo	Restricción	Descripción
+id_familia	SERIAL	PK	Identificador de la familia
+nombre_responsable	VARCHAR(150)	NOT NULL	Responsable familiar
+dpi_responsable	VARCHAR(20)	NULL	DPI del responsable
+telefono	VARCHAR(20)	NULL	Teléfono de contacto
+direccion	TEXT	NOT NULL	Dirección de la familia
+numero_integrantes	INT	NOT NULL	Cantidad de integrantes
+estado_servicio	VARCHAR(30)	DEFAULT 'ACTIVO'	Estado del servicio
+id_sector	INT	FK	Sector asignado
+usuario_id	INT	FK	Usuario asociado
+fecha_registro	TIMESTAMP	DEFAULT CURRENT_TIMESTAMP	Fecha de registro
+
+Tabla: tanques
+Campo	Tipo	Restricción	Descripción
+id_tanque	SERIAL	PK	Identificador del tanque
+nombre_tanque	VARCHAR(100)	NOT NULL	Nombre del tanque
+capacidad_litros	NUMERIC(10,2)	NOT NULL	Capacidad máxima
+ubicacion	TEXT	NULL	Ubicación física
+estado	VARCHAR(20)	DEFAULT 'ACTIVO'	Estado operativo
+
+Tabla: niveles_tanque
+Campo	Tipo	Restricción	Descripción
+id_nivel	SERIAL	PK	Identificador del nivel
+id_tanque	INT	FK	Tanque asociado
+nivel_litros	NUMERIC(10,2)	NOT NULL	Nivel actual en litros
+porcentaje	NUMERIC(5,2)	NULL	Porcentaje de llenado
+fecha_registro	TIMESTAMP	DEFAULT CURRENT_TIMESTAMP	Fecha del registro
+registrado_por	INT	FK	Usuario que registró
+Tabla: metricas_sistema
+Campo	Tipo	Restricción	Descripción
+id_metrica	SERIAL	PK	Identificador de métrica
+presion	NUMERIC(10,2)	NULL	Presión registrada
+litros_disponibles	NUMERIC(10,2)	NULL	Litros disponibles
+nivel_porcentaje	NUMERIC(5,2)	NULL	Nivel porcentual
+temperatura	NUMERIC(5,2)	NULL	Temperatura registrada
+fecha_registro	TIMESTAMP	DEFAULT CURRENT_TIMESTAMP	Fecha de medición
+
+Tabla: consumo
+Campo	Tipo	Restricción	Descripción
+id_consumo	SERIAL	PK	Identificador de consumo
+id_sector	INT	FK	Sector relacionado
+litros_consumidos	NUMERIC(10,2)	NULL	Litros consumidos
+fecha_registro	DATE	NOT NULL	Fecha de consumo
+
+Tabla: distribucion
+Campo	Tipo	Restricción	Descripción
+id_distribucion	SERIAL	PK	Identificador distribución
+id_sector	INT	FK	Sector asociado
+dia_semana	VARCHAR(20)	NOT NULL	Día programado
+hora_inicio	TIME	NOT NULL	Hora inicial
+hora_fin	TIME	NOT NULL	Hora final
+cantidad_estimada	NUMERIC(10,2)	NULL	Cantidad estimada
+estado	VARCHAR(20)	DEFAULT 'ACTIVO'	Estado programación
+
+Tabla: horarios_distribucion
+Campo	Tipo	Restricción	Descripción
+id_horario	SERIAL	PK	Identificador horario
+id_distribucion	INT	FK	Distribución relacionada
+fecha	DATE	NOT NULL	Fecha específica
+observaciones	TEXT	NULL	Comentarios adicionales
+
+Tabla: incidencias
+Campo	Tipo	Restricción	Descripción
+id_incidencia	SERIAL	PK	Identificador incidencia
+id_familia	INT	FK	Familia afectada
+tipo_incidencia	VARCHAR(100)	NOT NULL	Tipo de problema
+descripcion	TEXT	NOT NULL	Descripción detallada
+prioridad	VARCHAR(20)	DEFAULT 'MEDIA'	Nivel prioridad
+estado	VARCHAR(30)	DEFAULT 'PENDIENTE'	Estado incidencia
+fecha_reporte	TIMESTAMP	DEFAULT CURRENT_TIMESTAMP	Fecha reporte
+fecha_resolucion	TIMESTAMP	NULL	Fecha resolución
+asignado_a	INT	FK	Usuario asignado
+
+Tabla: mantenimiento
+Campo	Tipo	Restricción	Descripción
+id_mantenimiento	SERIAL	PK	Identificador mantenimiento
+id_sector	INT	FK	Sector relacionado
+descripcion	TEXT	NOT NULL	Descripción mantenimiento
+fecha_programada	DATE	NOT NULL	Fecha programada
+estado	VARCHAR(30)	DEFAULT 'PENDIENTE'	Estado mantenimiento
+responsable	INT	FK	Usuario responsable
+fecha_creacion	TIMESTAMP	DEFAULT CURRENT_TIMESTAMP	Fecha creación
+
+Tabla: alertas
+Campo	Tipo	Restricción	Descripción
+id_alerta	SERIAL	PK	Identificador alerta
+tipo_alerta	VARCHAR(50)	NOT NULL	Tipo de alerta
+mensaje	TEXT	NOT NULL	Mensaje de alerta
+nivel_criticidad	VARCHAR(20)	NULL	Nivel de criticidad
+estado	VARCHAR(20)	DEFAULT 'ACTIVA'	Estado alerta
+fecha_generada	TIMESTAMP	DEFAULT CURRENT_TIMESTAMP	Fecha generada
+
+Tabla: notificaciones
+Campo	Tipo	Restricción	Descripción
+id_notificacion	SERIAL	PK	Identificador notificación
+usuario_id	INT	FK	Usuario receptor
+mensaje	TEXT	NOT NULL	Contenido notificación
+leida	BOOLEAN	DEFAULT FALSE	Estado lectura
+fecha_envio	TIMESTAMP	DEFAULT CURRENT_TIMESTAMP	Fecha envío
+
+Tabla: historial_reportes
+Campo	Tipo	Restricción	Descripción
+id_reporte	SERIAL	PK	Identificador reporte
+usuario_id	INT	FK	Usuario generador
+tipo_reporte	VARCHAR(100)	NULL	Tipo reporte
+descripcion	TEXT	NULL	Descripción reporte
+fecha_generacion	TIMESTAMP	DEFAULT CURRENT_TIMESTAMP	Fecha generación
+
+Tabla: familias_eliminadas
+Campo	Tipo	Restricción	Descripción
+id_eliminado	SERIAL	PK	Identificador eliminación
+id_familia_original	INT	NOT NULL	ID original familia
+nombre_responsable	VARCHAR(150)	NOT NULL	Responsable familiar
+dpi_responsable	VARCHAR(20)	NULL	DPI responsable
+telefono	VARCHAR(20)	NULL	Teléfono
+direccion	TEXT	NOT NULL	Dirección
+numero_integrantes	INT	NOT NULL	Integrantes
+estado_servicio	VARCHAR(30)	NULL	Estado servicio
+id_sector	INT	FK	Sector relacionado
+usuario_id	INT	FK	Usuario relacionado
+fecha_registro	TIMESTAMP	NULL	Fecha original
+motivo_eliminacion	TEXT	NULL	Motivo eliminación
+eliminado_por	INT	FK	Usuario que eliminó
+fecha_eliminacion	TIMESTAMP	DEFAULT CURRENT_TIMESTAMP	Fecha eliminación
