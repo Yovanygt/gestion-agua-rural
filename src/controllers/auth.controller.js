@@ -14,10 +14,12 @@ const login = async (req, res) => {
             });
         }
 
-        const [rows] = await db.query(
-            'SELECT * FROM usuarios WHERE usuario = ?',
+        const result = await db.query(
+            'SELECT * FROM usuarios WHERE usuario = $1',
             [usuario]
         );
+
+        const rows = result.rows;
 
         if (rows.length === 0) {
             return res.status(404).json({
@@ -42,9 +44,9 @@ const login = async (req, res) => {
 
         const token = jwt.sign(
             {
-                id: usuarioDB.id,
+                id: usuarioDB.id_usuario,
                 usuario: usuarioDB.usuario,
-                rol: usuarioDB.rol
+                rol: usuarioDB.id_rol
             },
             process.env.JWT_SECRET,
             {
@@ -57,10 +59,10 @@ const login = async (req, res) => {
             message: 'Bienvenido al sistema',
             token,
             usuario: {
-                id: usuarioDB.id,
-                nombre: usuarioDB.nombre,
+                id: usuarioDB.id_usuario,
+                nombre: usuarioDB.nombre_completo,
                 usuario: usuarioDB.usuario,
-                rol: usuarioDB.rol
+                rol: usuarioDB.id_rol
             }
         });
 
