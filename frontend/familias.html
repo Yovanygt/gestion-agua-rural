@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Familias - Control de Agua</title>
+    <link rel="stylesheet" href="familias.css">
+</head>
+<body>
+
+<div class="dashboard">
+
+    <aside class="sidebar">
+
+        <div class="brand">
+            <div class="brand-icon">⬡</div>
+            <div>
+                <h2>Control Agua</h2>
+                <p>Sistema de Gestión</p>
+            </div>
+        </div>
+
+        <nav class="menu">
+            <a href="dashboard.html">⌂ <span>Inicio</span></a>
+            <a href="#" class="active">👥 <span>Familias</span></a>
+            <a href="incidencias.html">🔔 <span>Incidencias</span></a>
+            <a href="#">💧 <span>Tanques</span></a>
+            <a href="#">▦ <span>Sectores</span></a>
+            <a href="distribucion.html">📊 <span>Distribución</span></a>
+            <a href="#">▤ <span>Reportes</span></a>
+        </nav>
+
+        <a href="#" class="logout">↩ <span>Cerrar sesión</span></a>
+
+    </aside>
+
+    <main class="main">
+
+        <header class="header">
+            <div>
+                <h1>Módulo de Familias</h1>
+                <p>Registro y administración de familias del sistema</p>
+            </div>
+
+            <button class="save-btn">Guardar familia</button>
+        </header>
+
+        <section class="contenedor">
+
+            <div class="form-card">
+
+                <h2>Registrar nueva familia</h2>
+
+                <div class="form-grid">
+
+                    <div class="input-group">
+                        <label>Nombre del jefe de familia</label>
+                        <input type="text" placeholder="Ingrese el nombre completo">
+                    </div>
+
+                    <div class="input-group">
+                        <label>DPI</label>
+                        <input type="text" placeholder="Ingrese DPI">
+                    </div>
+
+                    <div class="input-group">
+                        <label>Teléfono</label>
+                        <input type="text" placeholder="Ingrese teléfono">
+                    </div>
+
+                    <div class="input-group">
+                        <label>Sector</label>
+                        <select>
+                            <option>Seleccione un sector</option>
+                            <option>Sector Norte</option>
+                            <option>Sector Sur</option>
+                            <option>Sector Este</option>
+                            <option>Sector Oeste</option>
+                        </select>
+                    </div>
+
+                    <div class="input-group full">
+                        <label>Dirección</label>
+                        <textarea placeholder="Ingrese la dirección de la familia"></textarea>
+                    </div>
+
+                    <div class="input-group">
+                        <label>Estado</label>
+                        <select>
+                            <option>Activa</option>
+                            <option>Inactiva</option>
+                            <option>Suspendida</option>
+                        </select>
+                    </div>
+
+                    <div class="input-group">
+                        <label>Fecha de registro</label>
+                        <input type="date">
+                    </div>
+
+                </div>
+
+                <div class="buttons">
+                    <button class="btn-clear">Limpiar</button>
+                    <button class="btn-save">Registrar familia</button>
+                </div>
+
+            </div>
+
+            <div class="summary-card">
+
+                <h3>Resumen de familias</h3>
+
+                <div class="summary-box">
+                    <span>👥</span>
+                    <div>
+                        <h2>0</h2>
+                        <p>Familias registradas</p>
+                    </div>
+                </div>
+
+                <div class="summary-box">
+                    <span>✅</span>
+                    <div>
+                        <h2>0</h2>
+                        <p>Familias activas</p>
+                    </div>
+                </div>
+
+                <div class="summary-box">
+                    <span>⚠</span>
+                    <div>
+                        <h2>0</h2>
+                        <p>Familias suspendidas</p>
+                    </div>
+                </div>
+
+            </div>
+
+        </section>
+
+        <section class="panel tabla-panel">
+
+            <div class="panel-title">
+                <h3>Familias registradas</h3>
+                <button>Actualizar</button>
+            </div>
+
+            <div class="empty-table">
+                <p>No hay familias registradas disponibles</p>
+            </div>
+
+        </section>
+
+    </main>
+
+</div>
+
+</body>
+</html>
