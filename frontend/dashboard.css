@@ -533,18 +533,162 @@ body {
 
 /* RESPONSIVE */
 
-@media (max-width: 1200px) {
+/* RESPONSIVE */
 
-    .stats {
+@media(max-width: 1100px){
+
+    .dashboard{
+        flex-direction: column;
+    }
+
+    .sidebar{
+        width: 100%;
+
+        min-height: auto;
+
+        padding: 25px;
+    }
+
+    .menu{
+        flex-direction: row;
+
+        flex-wrap: wrap;
+
+        justify-content: center;
+    }
+
+    .logout{
+        position: relative;
+
+        bottom: auto;
+        left: auto;
+        right: auto;
+
+        margin-top: 20px;
+    }
+
+    .main{
+        padding: 25px;
+    }
+
+    .header{
+        flex-direction: column;
+
+        align-items: flex-start;
+
+        gap: 15px;
+    }
+
+    .header h1{
+        font-size: 32px;
+    }
+
+    .stats{
         grid-template-columns: repeat(2, 1fr);
     }
 
-    .content-grid {
+    .content-grid{
         grid-template-columns: 1fr;
     }
 
-    .sectors-panel {
+    .sectors-panel{
         grid-column: auto;
+
         grid-row: auto;
+    }
+
+    .panel{
+        width: 100%;
+    }
+
+    .chart-box{
+        flex-direction: column;
+
+        height: auto;
+    }
+
+    .chart-lines{
+        width: 100%;
+
+        flex-direction: row;
+
+        justify-content: space-between;
+
+        margin-bottom: 10px;
+    }
+}
+
+@media(max-width: 700px){
+
+    .sidebar{
+        padding: 20px;
+    }
+
+    .brand{
+        justify-content: center;
+
+        text-align: center;
+    }
+
+    .menu{
+        flex-direction: column;
+    }
+
+    .main{
+        padding: 15px;
+    }
+
+    .header h1{
+        font-size: 26px;
+    }
+
+    .header p{
+        font-size: 14px;
+    }
+
+    .stats{
+        grid-template-columns: 1fr;
+    }
+
+    .stat-card{
+        flex-direction: column;
+
+        align-items: center;
+
+        text-align: center;
+    }
+
+    .stat-footer{
+        flex-direction: column;
+
+        gap: 8px;
+    }
+
+    .panel{
+        padding: 18px;
+    }
+
+    .panel-title{
+        flex-direction: column;
+
+        align-items: flex-start;
+
+        gap: 12px;
+    }
+
+    .days{
+        flex-wrap: wrap;
+
+        gap: 10px;
+    }
+
+    .sector-status{
+        flex-direction: column;
+
+        text-align: center;
+    }
+
+    .report-btn{
+        width: 100%;
     }
 }
