@@ -6,6 +6,7 @@ const familiaRoutes = require('./routes/familia.routes');
 const incidenciaRoutes = require('./routes/incidencia.routes');
 const tanqueRoutes = require('./routes/tanque.routes');
 const distribucionRoutes = require('./routes/distribucion.routes');
+const dashboardRoutes = require('./routes/dashboard.routes');
 
 const app = express();
 
@@ -23,5 +24,6 @@ app.use('/api/familias', familiaRoutes);
 app.use('/api/incidencias', incidenciaRoutes);
 app.use('/api/tanques', tanqueRoutes);
 app.use('/api/distribucion', distribucionRoutes);
+app.use('/dashboard', dashboardRoutes);
 
 module.exports = app;
