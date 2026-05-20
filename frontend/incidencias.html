@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Incidencias - Control de Agua</title>
+    <link rel="stylesheet" href="incidencias.css">
+</head>
+<body>
+
+<div class="dashboard">
+
+    <!-- SIDEBAR -->
+
+    <aside class="sidebar">
+
+        <div class="brand">
+            <div class="brand-icon">⬡</div>
+
+            <div>
+                <h2>Control Agua</h2>
+                <p>Sistema de Gestión</p>
+            </div>
+        </div>
+
+        <nav class="menu">
+            <a href="dashboard.html">⌂ <span>Inicio</span></a>
+            <a href="familias.html">👥 <span>Familias</span></a>
+            <a href="incidencias.html">🔔 <span>Incidencias</span></a>
+            <a href="tanques.html">💧 <span>Tanques</span></a>
+            <a href="sectores.html" class="active">▦ <span>Sectores</span></a>
+            <a href="distribucion.html">📊 <span>Distribución</span></a>
+            <a href="reportes.html">▤ <span>Reportes</span></a>
+            <a href="configuracion.html">⚙ <span>Configuración</span></a>
+        </nav>
+
+        <a href="#" class="logout">
+            ↩ <span>Cerrar sesión</span>
+        </a>
+
+    </aside>
+
+    <!-- CONTENIDO -->
+
+    <main class="main">
+
+        <header class="header">
+
+            <div>
+                <h1>Formulario de Incidencias</h1>
+                <p>Registro y control de incidencias del sistema</p>
+            </div>
+
+            <button class="save-btn">
+                Guardar incidencia
+            </button>
+
+        </header>
+
+        <!-- FORMULARIO -->
+
+        <section class="form-container">
+
+            <div class="form-card">
+
+                <h2>Registrar nueva incidencia</h2>
+
+                <div class="form-grid">
+
+                    <div class="input-group">
+                        <label>Nombre del responsable</label>
+                        <input type="text" placeholder="Ingrese el nombre">
+                    </div>
+
+                    <div class="input-group">
+
+                        <label>Sector</label>
+
+                        <select>
+                            <option>Seleccione un sector</option>
+                            <option>Sector A</option>
+                            <option>Sector B</option>
+                            <option>Sector C</option>
+                            <option>Sector D</option>
+                            <option>Sector E</option>
+                            <option>Sector F</option>
+                        </select>
+
+                    </div>
+
+                    <div class="input-group">
+                        <label>Tipo de incidencia</label>
+
+                        <select>
+                            <option>Seleccione una incidencia</option>
+                            <option>Fuga de agua</option>
+                            <option>Falta de agua</option>
+                            <option>Tubería dañada</option>
+                            <option>Tanque vacío</option>
+                        </select>
+                    </div>
+
+                    <div class="input-group">
+                        <label>Prioridad</label>
+
+                        <select>
+                            <option>Baja</option>
+                            <option>Media</option>
+                            <option>Alta</option>
+                        </select>
+                    </div>
+
+                    <div class="input-group full">
+                        <label>Descripción</label>
+
+                        <textarea placeholder="Ingrese la descripción de la incidencia"></textarea>
+                    </div>
+
+                    <div class="input-group">
+                        <label>Fecha</label>
+                        <input type="date">
+                    </div>
+
+                    <div class="input-group">
+                        <label>Estado</label>
+
+                        <select>
+                            <option>Pendiente</option>
+                            <option>En proceso</option>
+                            <option>Resuelto</option>
+                        </select>
+                    </div>
+
+                </div>
+
+                <div class="buttons">
+
+                    <button class="btn-clear">
+                        Limpiar
+                    </button>
+
+                    <button class="btn-save">
+                        Registrar incidencia
+                    </button>
+
+                </div>
+
+            </div>
+
+            <!-- PANEL DERECHO -->
+
+            <div class="info-card">
+
+                <h3>Resumen</h3>
+
+                <div class="info-box">
+                    <span>🔔</span>
+
+                    <div>
+                        <h2>0</h2>
+                        <p>Incidencias registradas</p>
+                    </div>
+                </div>
+
+                <div class="info-box">
+                    <span>⚠</span>
+
+                    <div>
+                        <h2>0</h2>
+                        <p>Incidencias pendientes</p>
+                    </div>
+                </div>
+
+                <div class="info-box">
+                    <span>✅</span>
+
+                    <div>
+                        <h2>0</h2>
+                        <p>Incidencias resueltas</p>
+                    </div>
+                </div>
+
+            </div>
+
+        </section>
+
+    </main>
+
+</div>
+
+</body>
+</html>
