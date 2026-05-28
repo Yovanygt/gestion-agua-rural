@@ -62,16 +62,36 @@ body {
     margin-bottom: 60px;
 }
 
+/* LOGO */
+
 .brand-icon {
-    font-size: 40px;
+    width: 38px;
+    height: 38px;
+    background: transparent;
+    border: none;
+    border-radius: 0;
+    padding: 0;
+    color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-shrink: 0;
+}
+
+.brand-icon svg {
+    width: 36px;
+    height: 36px;
+    display: block;
 }
 
 .brand h2 {
     font-size: 22px;
+    color: white;
 }
 
 .brand p {
     font-size: 13px;
+    color: white;
 }
 
 /* MENU */
@@ -145,6 +165,10 @@ body {
     cursor: pointer;
 }
 
+.save-btn:hover {
+    background: #009ec0;
+}
+
 /* CONTENT */
 
 .contenedor {
@@ -200,6 +224,14 @@ body {
     padding: 14px;
     font-size: 15px;
     outline: none;
+    background: white;
+}
+
+.input-group input:focus,
+.input-group select:focus,
+.input-group textarea:focus {
+    border-color: #0067ff;
+    box-shadow: 0 0 0 3px rgba(0,103,255,0.12);
 }
 
 .input-group textarea {
@@ -225,6 +257,10 @@ body {
     font-weight: bold;
 }
 
+.btn-clear:hover {
+    background: #cbd5e1;
+}
+
 .btn-save {
     background: #0067ff;
     color: white;
@@ -233,6 +269,10 @@ body {
     border-radius: 10px;
     cursor: pointer;
     font-weight: bold;
+}
+
+.btn-save:hover {
+    background: #0051d4;
 }
 
 /* SUMMARY */
@@ -282,6 +322,43 @@ body {
     cursor: pointer;
 }
 
+.panel-title button:hover {
+    background: #009ec0;
+}
+
+.tabla-wrapper {
+    width: 100%;
+    overflow-x: auto;
+}
+
+table {
+    width: 100%;
+    min-width: 900px;
+    border-collapse: collapse;
+    background: white;
+}
+
+thead {
+    background: #f8fbff;
+}
+
+th,
+td {
+    padding: 14px;
+    text-align: left;
+    border-bottom: 1px solid #e5edf5;
+    font-size: 14px;
+}
+
+th {
+    color: #334155;
+    font-weight: bold;
+}
+
+td {
+    color: #475569;
+}
+
 .empty-table {
     min-height: 180px;
     border: 2px dashed #dbe6f2;
@@ -291,130 +368,132 @@ body {
     justify-content: center;
     align-items: center;
     color: #64748b;
+    margin-top: 15px;
 }
 
 /* RESPONSIVE */
 
-@media(max-width: 900px){
+@media(max-width: 1000px) {
 
-    .dashboard{
+    .contenedor {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media(max-width: 900px) {
+
+    .dashboard {
         flex-direction: column;
     }
 
-    .sidebar{
+    .sidebar {
         width: 100%;
-
         min-height: auto;
     }
 
-    .menu{
+    .menu {
         flex-direction: row;
-
         flex-wrap: wrap;
-
         justify-content: center;
     }
 
-    .logout{
+    .logout {
         position: relative;
-
         bottom: auto;
         left: auto;
         right: auto;
-
         margin-top: 20px;
     }
 
-    .main{
+    .main {
         padding: 25px;
     }
 
-    .header{
+    .header {
         flex-direction: column;
-
         align-items: flex-start;
-
         gap: 15px;
     }
 
-    .header h1{
+    .header h1 {
         font-size: 32px;
     }
 
     .panel,
     .form-card,
-    .summary-card{
+    .summary-card {
         width: 100%;
     }
 }
 
-@media(max-width: 600px){
+@media(max-width: 700px) {
 
-    .sidebar{
+    .form-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .input-group.full {
+        grid-column: auto;
+    }
+}
+
+@media(max-width: 600px) {
+
+    .sidebar {
         padding: 20px;
     }
 
-    .brand{
-        justify-content: center;
-
-        text-align: center;
-    }
-
-    .menu{
+    .menu {
         flex-direction: column;
     }
 
-    .main{
+    .main {
         padding: 15px;
     }
 
-    .header h1{
+    .header h1 {
         font-size: 26px;
     }
 
-    .header p{
+    .header p {
         font-size: 14px;
     }
 
     .form-card,
     .summary-card,
-    .panel{
+    .panel {
         padding: 18px;
     }
 
     .input-group input,
     .input-group select,
-    .input-group textarea{
+    .input-group textarea {
         font-size: 14px;
-
         padding: 12px;
     }
 
-    .buttons{
+    .buttons {
         flex-direction: column;
     }
 
     .btn-save,
     .btn-clear,
-    .save-btn{
+    .save-btn {
         width: 100%;
     }
 
-    .summary-box{
+    .summary-box {
         flex-direction: column;
-
         text-align: center;
     }
 
-    .summary-box span{
+    .summary-box span {
         font-size: 28px;
     }
 
-    .panel-title{
+    .panel-title {
         flex-direction: column;
-
         align-items: flex-start;
-
         gap: 12px;
     }
 }
