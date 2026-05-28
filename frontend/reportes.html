@@ -16,7 +16,16 @@
 
         <div class="brand">
 
-            <div class="brand-icon">💧</div>
+            <div class="brand-icon">
+                <svg viewBox="0 0 24 24" fill="none">
+                    <path 
+                        d="M12 3L20 7.5V16.5L12 21L4 16.5V7.5L12 3Z"
+                        stroke="white"
+                        stroke-width="2"
+                        stroke-linejoin="round"
+                    />
+                </svg>
+            </div>
 
             <div>
                 <h2>Control Agua</h2>
@@ -26,42 +35,17 @@
         </div>
 
         <nav class="menu">
-
-            <a href="dashboard.html">
-                ⌂ <span>Inicio</span>
-            </a>
-
-            <a href="familias.html">
-                👥 <span>Familias</span>
-            </a>
-
-            <a href="incidencias.html">
-                ⚠ <span>Incidencias</span>
-            </a>
-
-            <a href="tanques.html">
-                💧 <span>Tanques</span>
-            </a>
-
-            <a href="sectores.html">
-                ▦ <span>Sectores</span>
-            </a>
-
-            <a href="distribucion.html">
-                📊 <span>Distribución</span>
-            </a>
-
-            <a href="reportes.html" class="active">
-                ▤ <span>Reportes</span>
-            </a>
-
-            <a href="configuracion.html">
-                ⚙ <span>Configuración</span>
-            </a>
-
+            <a href="dashboard.html">⌂ <span>Inicio</span></a>
+            <a href="familias.html">👥 <span>Familias</span></a>
+            <a href="incidencias.html">🔔 <span>Incidencias</span></a>
+            <a href="tanques.html">💧 <span>Tanques</span></a>
+            <a href="sectores.html">▦ <span>Sectores</span></a>
+            <a href="distribucion.html">📊 <span>Distribución</span></a>
+            <a href="reportes.html" class="active">▤ <span>Reportes</span></a>
+            <a href="configuracion.html">⚙ <span>Configuración</span></a>
         </nav>
 
-        <a href="#" class="logout">
+        <a href="login.html" class="logout">
             ↩ <span>Cerrar sesión</span>
         </a>
 
@@ -83,7 +67,9 @@
                 <input type="date">
                 <input type="date">
 
-                <button>Exportar reporte</button>
+                <button>
+                    Exportar reporte
+                </button>
 
             </div>
 
@@ -151,7 +137,7 @@
 
         </section>
 
-        <!-- GRAFICAS -->
+        <!-- GRÁFICAS -->
 
         <section class="report-grid">
 
@@ -190,24 +176,21 @@
             <table>
 
                 <thead>
-                <tr>
-                    <th>Reporte</th>
-                    <th>Fecha</th>
-                    <th>Estado</th>
-                    <th>Resultado</th>
-                </tr>
-
+                    <tr>
+                        <th>Reporte</th>
+                        <th>Fecha</th>
+                        <th>Estado</th>
+                        <th>Resultado</th>
+                    </tr>
                 </thead>
 
                 <tbody>
 
-                <tr class="empty-row">
-
-                    <td colspan="4">
-                        No hay reportes disponibles
-                    </td>
-
-                </tr>
+                    <tr class="empty-row">
+                        <td colspan="4">
+                            No hay reportes disponibles
+                        </td>
+                    </tr>
 
                 </tbody>
 
