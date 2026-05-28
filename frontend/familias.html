@@ -16,7 +16,16 @@
 
         <div class="brand">
 
-            <div class="brand-icon">⬡</div>
+            <div class="brand-icon">
+                <svg viewBox="0 0 24 24" fill="none">
+                    <path 
+                        d="M12 3L20 7.5V16.5L12 21L4 16.5V7.5L12 3Z"
+                        stroke="white"
+                        stroke-width="2"
+                        stroke-linejoin="round"
+                    />
+                </svg>
+            </div>
 
             <div>
                 <h2>Control Agua</h2>
@@ -27,16 +36,16 @@
 
         <nav class="menu">
             <a href="dashboard.html">⌂ <span>Inicio</span></a>
-            <a href="familias.html">👥 <span>Familias</span></a>
+            <a href="familias.html" class="active">👥 <span>Familias</span></a>
             <a href="incidencias.html">🔔 <span>Incidencias</span></a>
             <a href="tanques.html">💧 <span>Tanques</span></a>
-            <a href="sectores.html" class="active">▦ <span>Sectores</span></a>
+            <a href="sectores.html">▦ <span>Sectores</span></a>
             <a href="distribucion.html">📊 <span>Distribución</span></a>
             <a href="reportes.html">▤ <span>Reportes</span></a>
             <a href="configuracion.html">⚙ <span>Configuración</span></a>
         </nav>
 
-        <a href="#" class="logout">
+        <a href="login.html" class="logout">
             ↩ <span>Cerrar sesión</span>
         </a>
 
@@ -53,7 +62,7 @@
                 <p>Registro y administración de familias del sistema</p>
             </div>
 
-            <button class="save-btn">
+            <button class="save-btn" id="btnGuardarSuperior">
                 Guardar familia
             </button>
 
@@ -69,92 +78,109 @@
 
                 <h2>Registrar nueva familia</h2>
 
-                <div class="form-grid">
+                <form id="formFamilia">
 
-                    <div class="input-group">
+                    <div class="form-grid">
 
-                        <label>Nombre del jefe de familia</label>
+                        <div class="input-group">
+                            <label for="nombre_jefe">Nombre del jefe de familia</label>
 
-                        <input type="text"
-                               placeholder="Ingrese el nombre completo">
+                            <input 
+                                type="text"
+                                id="nombre_jefe"
+                                placeholder="Ingrese el nombre completo"
+                                required
+                            >
+                        </div>
+
+                        <div class="input-group">
+                            <label for="dpi">DPI</label>
+
+                            <input 
+                                type="text"
+                                id="dpi"
+                                placeholder="Ingrese DPI"
+                                required
+                            >
+                        </div>
+
+                        <div class="input-group">
+                            <label for="telefono">Teléfono</label>
+
+                            <input 
+                                type="text"
+                                id="telefono"
+                                placeholder="Ingrese teléfono"
+                            >
+                        </div>
+
+                        <div class="input-group">
+                            <label for="correo">Correo electrónico</label>
+
+                            <input 
+                                type="email"
+                                id="correo"
+                                placeholder="Ingrese correo electrónico"
+                            >
+                        </div>
+
+                        <div class="input-group">
+                            <label for="sector">Sector</label>
+
+                            <select id="sector">
+                                <option value="">Seleccione un sector</option>
+                                <option value="Sector A">Sector A</option>
+                                <option value="Sector B">Sector B</option>
+                                <option value="Sector C">Sector C</option>
+                                <option value="Sector D">Sector D</option>
+                                <option value="Sector E">Sector E</option>
+                                <option value="Sector F">Sector F</option>
+                            </select>
+                        </div>
+
+                        <div class="input-group">
+                            <label for="estado">Estado</label>
+
+                            <select id="estado">
+                                <option value="Activa">Activa</option>
+                                <option value="Inactiva">Inactiva</option>
+                                <option value="Suspendida">Suspendida</option>
+                            </select>
+                        </div>
+
+                        <div class="input-group full">
+                            <label for="direccion">Dirección</label>
+
+                            <textarea 
+                                id="direccion"
+                                placeholder="Ingrese la dirección de la familia"
+                            ></textarea>
+                        </div>
+
+                        <div class="input-group">
+                            <label for="fecha_registro">Fecha de registro</label>
+
+                            <input 
+                                type="date"
+                                id="fecha_registro"
+                            >
+                        </div>
 
                     </div>
 
-                    <div class="input-group">
+                    <div class="buttons">
 
-                        <label>DPI</label>
+                        <button type="button" class="btn-clear" id="btnLimpiar">
+                            Limpiar
+                        </button>
 
-                        <input type="text"
-                               placeholder="Ingrese DPI">
-
-                    </div>
-
-                    <div class="input-group">
-
-                        <label>Teléfono</label>
-
-                        <input type="text"
-                               placeholder="Ingrese teléfono">
+                        <button type="submit" class="btn-save">
+                            Registrar familia
+                        </button>
 
                     </div>
 
-                    <div class="input-group">
-
-                        <label>Sector</label>
-
-                        <select>
-                            <option>Seleccione un sector</option>
-                            <option>Sector A</option>
-                            <option>Sector B</option>
-                            <option>Sector C</option>
-                            <option>Sector D</option>
-                            <option>Sector E</option>
-                            <option>Sector F</option>
-                        </select>
-
-                    </div>
-
-                    <div class="input-group full">
-
-                        <label>Dirección</label>
-
-                        <textarea placeholder="Ingrese la dirección de la familia"></textarea>
-
-                    </div>
-
-                    <div class="input-group">
-
-                        <label>Estado</label>
-
-                        <select>
-                            <option>Activa</option>
-                            <option>Inactiva</option>
-                            <option>Suspendido</option>
-                        </select>
-
-                    </div>
-
-                    <div class="input-group">
-
-                        <label>Fecha de registro</label>
-
-                        <input type="date">
-
-                    </div>
-
-                </div>
-
-                <div class="buttons">
-
-                    <button class="btn-clear">
-                        Limpiar
-                    </button>
-
-                    <button class="btn-save">
-                        Registrar familia
-                    </button>
-
-                </div>
+                </form>
 
             </div>
 
@@ -165,36 +191,30 @@
                 <h3>Resumen de familias</h3>
 
                 <div class="summary-box">
-
                     <span>👥</span>
 
                     <div>
-                        <h2>0</h2>
+                        <h2 id="totalFamilias">0</h2>
                         <p>Familias registradas</p>
                     </div>
-
                 </div>
 
                 <div class="summary-box">
-
                     <span>✅</span>
 
                     <div>
-                        <h2>0</h2>
+                        <h2 id="totalActivas">0</h2>
                         <p>Familias activas</p>
                     </div>
-
                 </div>
 
                 <div class="summary-box">
-
                     <span>⚠</span>
 
                     <div>
-                        <h2>0</h2>
-                        <p>Familias en estado suspendido</p>
+                        <h2 id="totalSuspendidas">0</h2>
+                        <p>Familias suspendidas</p>
                     </div>
-
                 </div>
 
             </div>
@@ -209,15 +229,37 @@
 
                 <h3>Familias registradas</h3>
 
-                <button>
+                <button id="btnActualizar">
                     Actualizar
                 </button>
 
             </div>
 
-            <div class="empty-table">
+            <div class="tabla-wrapper">
 
-                <p>No hay familias registradas disponibles</p>
+                <table>
+
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Jefe de familia</th>
+                            <th>DPI</th>
+                            <th>Teléfono</th>
+                            <th>Correo</th>
+                            <th>Sector</th>
+                            <th>Estado</th>
+                            <th>Fecha</th>
+                        </tr>
+                    </thead>
+
+                    <tbody id="cuerpoTabla">
+                    </tbody>
+
+                </table>
+
+                <div class="empty-table" id="emptyTable">
+                    <p>No hay familias registradas disponibles</p>
+                </div>
 
             </div>
 
@@ -226,6 +268,8 @@
     </main>
 
 </div>
+
+<script src="familias.js"></script>
 
 </body>
 </html>
