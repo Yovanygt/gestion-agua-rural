@@ -5,53 +5,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Sectores - Control de Agua</title>
     <link rel="stylesheet" href="sectores.css">
+    <link rel="stylesheet" href="sidebar.css">
 </head>
 <body>
 
 <div class="dashboard">
 
-    <!-- SIDEBAR -->
-
-    <aside class="sidebar">
-
-        <div class="brand">
-
-            <div class="brand-icon">
-                <svg viewBox="0 0 24 24" fill="none">
-                    <path 
-                        d="M12 3L20 7.5V16.5L12 21L4 16.5V7.5L12 3Z"
-                        stroke="white"
-                        stroke-width="2"
-                        stroke-linejoin="round"
-                    />
-                </svg>
-            </div>
-
-            <div>
-                <h2>Control Agua</h2>
-                <p>Sistema de Gestión</p>
-            </div>
-
-        </div>
-
-        <nav class="menu">
-            <a href="dashboard.html">⌂ <span>Inicio</span></a>
-            <a href="familias.html">👥 <span>Familias</span></a>
-            <a href="incidencias.html">🔔 <span>Incidencias</span></a>
-            <a href="tanques.html">💧 <span>Tanques</span></a>
-            <a href="sectores.html" class="active">▦ <span>Sectores</span></a>
-            <a href="distribucion.html">📊 <span>Distribución</span></a>
-            <a href="reportes.html">▤ <span>Reportes</span></a>
-            <a href="configuracion.html">⚙ <span>Configuración</span></a>
-        </nav>
-
-        <a href="login.html" class="logout">
-            ↩ <span>Cerrar sesión</span>
-        </a>
-
-    </aside>
-
-    <!-- MAIN -->
+    <aside class="sidebar" id="sidebar"></aside>
 
     <main class="main">
 
@@ -62,8 +22,8 @@
                 <p>Organiza y administra los sectores de distribución de agua.</p>
             </div>
 
-            <button class="save-btn">
-                ＋ Agregar sector
+            <button class="save-btn" id="btnVerSectores">
+                Ver sectores
             </button>
 
         </header>
@@ -75,8 +35,8 @@
 
                 <div>
                     <p>Total sectores</p>
-                    <h2>0</h2>
-                    <span>Sin datos</span>
+                    <h2 id="totalSectores">0</h2>
+                    <span>Sectores del A al F</span>
                 </div>
             </div>
 
@@ -85,8 +45,8 @@
 
                 <div>
                     <p>Total familias</p>
-                    <h2>0</h2>
-                    <span>Sin datos</span>
+                    <h2 id="totalFamilias">0</h2>
+                    <span>Asignadas a sectores</span>
                 </div>
             </div>
 
@@ -95,8 +55,8 @@
 
                 <div>
                     <p>En distribución hoy</p>
-                    <h2>0</h2>
-                    <span>Sin datos</span>
+                    <h2 id="sectoresActivos">0</h2>
+                    <span>Sectores activos</span>
                 </div>
             </div>
 
@@ -105,8 +65,8 @@
 
                 <div>
                     <p>Sectores inactivos</p>
-                    <h2>0</h2>
-                    <span>Sin datos</span>
+                    <h2 id="sectoresInactivos">0</h2>
+                    <span>Sin distribución</span>
                 </div>
             </div>
 
@@ -118,13 +78,14 @@
 
             <input 
                 type="text" 
+                id="buscarSector"
                 placeholder="Buscar sector..."
             >
 
         </section>
 
-        <section class="empty-sector-panel">
-            <p>No hay sectores registrados disponibles</p>
+        <section class="sector-panel" id="panelSectores">
+            <p>Cargando sectores...</p>
         </section>
 
         <section class="info-box">
@@ -132,7 +93,7 @@
             <div>ⓘ</div>
 
             <p>
-                Cuando se registren sectores, aparecerán aquí con su horario, familias asignadas y estado.
+                Los sectores del sistema son A, B, C, D, E y F. Estos sectores se cargan automáticamente desde la aplicación.
             </p>
 
         </section>
@@ -141,5 +102,80 @@
 
 </div>
 
+<div class="modal-overlay" id="modalSector">
+    <div class="modal-sector">
+
+        <div class="modal-header">
+            <div>
+                <h2 id="modalTituloSector">Detalle del sector</h2>
+                <p>Consulta y modifica la información del sector seleccionado.</p>
+            </div>
+
+            <button class="close-modal" id="cerrarModalSector">×</button>
+        </div>
+
+        <div class="modal-body">
+
+            <div class="form-grid">
+
+                <div class="form-group">
+                    <label>Nombre del sector</label>
+                    <input type="text" id="detalleNombreSector" readonly>
+                </div>
+
+                <div class="form-group">
+                    <label>Zona</label>
+                    <input type="text" id="detalleZonaSector" readonly>
+                </div>
+
+                <div class="form-group">
+                    <label>Horario de distribución</label>
+                    <input type="text" id="detalleHorarioSector" placeholder="Ejemplo: 06:00 - 09:00">
+                </div>
+
+                <div class="form-group">
+                    <label>Estado</label>
+                    <select id="detalleEstadoSector">
+                        <option value="Activo">Activo</option>
+                        <option value="Inactivo">Inactivo</option>
+                        <option value="Mantenimiento">Mantenimiento</option>
+                    </select>
+                </div>
+
+                <div class="form-group full">
+                    <label>Observaciones</label>
+                    <textarea id="detalleObservacionesSector" placeholder="Ingrese observaciones del sector"></textarea>
+                </div>
+
+            </div>
+
+            <div class="familias-sector-box">
+
+                <div class="familias-header">
+                    <h3>Familias registradas en este sector</h3>
+                    <span id="contadorFamiliasSector">0 familias</span>
+                </div>
+
+                <div id="listaFamiliasSector" class="familias-lista">
+                    <p>No hay familias registradas en este sector.</p>
+                </div>
+
+            </div>
+
+        </div>
+
+        <div class="modal-footer">
+            <button class="btn-cancelar" id="cancelarModalSector">Cancelar</button>
+            <button class="btn-guardar" id="guardarCambiosSector">Guardar cambios</button>
+        </div>
+
+    </div>
+</div>
+
+<script src="sidebar.js"></script>
+<script>
+    cargarSidebar('sectores');
+</script>
+<script src="sectores.js"></script>
 </body>
 </html>
