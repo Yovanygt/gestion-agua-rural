@@ -3,271 +3,243 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dashboard - Control de Agua</title>
+    <title>Dashboard - Control Agua</title>
+
+    <link rel="stylesheet" href="sidebar.css">
     <link rel="stylesheet" href="dashboard.css">
 </head>
 <body>
 
 <div class="dashboard">
 
-    <!-- SIDEBAR -->
-
-    <aside class="sidebar">
-
-        <div class="brand">
-
-            <div class="brand-icon">
-                <svg viewBox="0 0 24 24" fill="none">
-                    <path 
-                        d="M12 3L20 7.5V16.5L12 21L4 16.5V7.5L12 3Z"
-                        stroke="white"
-                        stroke-width="2"
-                        stroke-linejoin="round"
-                    />
-                </svg>
-            </div>
-
-            <div>
-                <h2>Control Agua</h2>
-                <p>Sistema de Gestión</p>
-            </div>
-
-        </div>
-
-        <nav class="menu">
-            <a href="dashboard.html" class="active">⌂ <span>Inicio</span></a>
-            <a href="familias.html">👥 <span>Familias</span></a>
-            <a href="incidencias.html">🔔 <span>Incidencias</span></a>
-            <a href="tanques.html">💧 <span>Tanques</span></a>
-            <a href="sectores.html">▦ <span>Sectores</span></a>
-            <a href="distribucion.html">📊 <span>Distribución</span></a>
-            <a href="reportes.html">▤ <span>Reportes</span></a>
-            <a href="configuracion.html">⚙ <span>Configuración</span></a>
-        </nav>
-
-        <a href="login.html" class="logout">
-            ↩ <span>Cerrar sesión</span>
-        </a>
-
-    </aside>
-
-    <!-- MAIN -->
+    <aside class="sidebar" id="sidebar"></aside>
 
     <main class="main">
 
         <header class="header">
-
             <div>
                 <h1>Dashboard Principal</h1>
                 <p>Sistema de control y gestión de agua rural</p>
             </div>
 
-            <div class="date">
-                🗓️ 27 de mayo de 2026
+            <div class="fecha-dashboard">
+                📅 <span id="fechaActual">Cargando fecha...</span>
             </div>
-
         </header>
 
-        <!-- TARJETAS PRINCIPALES -->
-
-        <section class="stats">
+        <!-- TARJETAS SUPERIORES -->
+        <section class="stats-grid">
 
             <div class="stat-card">
-
-                <div class="stat-icon">💧</div>
+                <div class="stat-icon water">💧</div>
 
                 <div>
                     <p>Consumo total</p>
-                    <h2>0 <span>m³</span></h2>
-
-                    <div class="stat-bottom">
-                        <span>Hoy</span>
-                        <span>0 m³</span>
-                    </div>
+                    <h2><span id="consumoTotal">0</span> L</h2>
+                    <small>Registrado en distribución</small>
                 </div>
-
             </div>
 
             <div class="stat-card">
-
-                <div class="stat-icon">📈</div>
+                <div class="stat-icon pressure">📈</div>
 
                 <div>
                     <p>Presión actual</p>
-                    <h2>0 <span>bar</span></h2>
-
-                    <div class="stat-bottom">
-                        <span>Hoy</span>
-                        <span>0bar</span>
-                    </div>
+                    <h2><span id="presionActual">2.4</span> bar</h2>
+                    <small>Valor de referencia</small>
                 </div>
-
             </div>
 
             <div class="stat-card">
-
-                <div class="stat-icon">🚰</div>
+                <div class="stat-icon flow">🔄</div>
 
                 <div>
                     <p>Flujo promedio</p>
-                    <h2>0 <span>L/min</span></h2>
-
-                    <div class="stat-bottom">
-                        <span>Hoy</span>
-                        <span>0 L/min</span>
-                    </div>
+                    <h2><span id="flujoPromedio">0</span> L</h2>
+                    <small>Promedio por distribución</small>
                 </div>
-
             </div>
 
             <div class="stat-card">
-
-                <div class="stat-icon green">✅</div>
+                <div class="stat-icon success">✅</div>
 
                 <div>
                     <p>Eficiencia</p>
-                    <h2>0 <span>%</span></h2>
-
-                    <div class="stat-bottom">
-                        <span>Hoy</span>
-                        <span>0%</span>
-                    </div>
+                    <h2><span id="eficiencia">0</span>%</h2>
+                    <small>Familias atendidas</small>
                 </div>
-
             </div>
 
         </section>
 
         <!-- CONTENIDO PRINCIPAL -->
-
-        <section class="content-grid">
+        <section class="dashboard-grid">
 
             <!-- CONSUMO SEMANAL -->
+            <div class="panel panel-large">
 
-            <div class="panel chart-panel">
+                <div class="panel-header">
+                    <div>
+                        <h2>Consumo semanal</h2>
+                        <p>Litros distribuidos durante los últimos días</p>
+                    </div>
 
-                <div class="panel-title">
-                    <h3>Consumo semanal</h3>
-                    <button>Actualizar</button>
+                    <button id="btnActualizarDashboard">Actualizar</button>
                 </div>
 
-                <div class="chart-box">
-
-                    <div class="chart-numbers">
-                        <span>50</span>
-                        <span>40</span>
-                        <span>30</span>
-                        <span>20</span>
-                        <span>10</span>
-                        <span>0</span>
+                <div class="chart-box" id="graficaConsumo">
+                    <div class="empty-chart">
+                        No hay datos de distribución registrados
                     </div>
-
-                    <div class="chart-area">
-                        <p>No hay registros disponibles</p>
-
-                        <div class="days">
-                            <span>Lun</span>
-                            <span>Mar</span>
-                            <span>Mié</span>
-                            <span>Jue</span>
-                            <span>Vie</span>
-                            <span>Sáb</span>
-                            <span>Dom</span>
-                        </div>
-                    </div>
-
                 </div>
 
             </div>
 
             <!-- ALERTAS -->
+            <div class="panel">
 
-            <div class="panel alerts-panel">
+                <div class="panel-header">
+                    <div>
+                        <h2>Alertas recientes</h2>
+                        <p>Últimas incidencias registradas</p>
+                    </div>
 
-                <div class="alert-header">
-                    <div class="alert-icon">🔔</div>
-                    <h3>Alertas recientes</h3>
+                    <a href="incidencias.html">Ver todas</a>
                 </div>
 
-                <div class="empty-alert">
-                    <span>🔔</span>
-                    <p>No hay alertas registradas</p>
+                <div class="alert-list" id="listaAlertas">
+                    <div class="empty-box">
+                        No hay alertas registradas
+                    </div>
                 </div>
 
             </div>
 
-            <!-- GESTIÓN DE SECTORES -->
+            <!-- SECTORES -->
+            <div class="panel sector-panel">
 
-            <div class="panel sectors-panel">
+                <div class="panel-header">
+                    <div>
+                        <h2>Gestión de sectores</h2>
+                    </div>
 
-                <div class="panel-title">
-                    <h3>Gestión de sectores</h3>
-                    <button>Agregar</button>
+                    <a href="sectores.html">Ver</a>
                 </div>
 
-                <div class="sector-status active-sector">
-                    <span>👥</span>
+                <div class="sector-card active">
+                    <div class="sector-icon">👥</div>
+
                     <div>
-                        <h2>0</h2>
+                        <h3 id="sectoresActivos">6</h3>
                         <p>Activos</p>
                     </div>
                 </div>
 
-                <div class="sector-status maintenance-sector">
-                    <span>🔧</span>
+                <div class="sector-card maintenance">
+                    <div class="sector-icon">🔧</div>
+
                     <div>
-                        <h2>0</h2>
-                        <p>Mantenimiento</p>
+                        <h3 id="sectoresMantenimiento">0</h3>
+                        <p>En mantenimiento</p>
                     </div>
                 </div>
 
-                <div class="sector-status inactive-sector">
-                    <span>⊗</span>
+                <div class="sector-card inactive">
+                    <div class="sector-icon">⊗</div>
+
                     <div>
-                        <h2>0</h2>
+                        <h3 id="sectoresInactivos">0</h3>
                         <p>Inactivos</p>
                     </div>
                 </div>
 
-                <div class="empty-sector">
-                    <p>No hay sectores agregados</p>
-                </div>
+                <a class="sector-link" href="sectores.html">
+                    Ver todos los sectores →
+                </a>
 
             </div>
 
             <!-- MANTENIMIENTO -->
+            <div class="panel">
 
-            <div class="panel maintenance-panel">
+                <div class="panel-header">
+                    <div>
+                        <h2>Mantenimiento Programado</h2>
+                        <p>Actividades pendientes del sistema</p>
+                    </div>
 
-                <div class="alert-header">
-                    <div class="alert-icon">🗓️</div>
-                    <h3>Mantenimiento Programado</h3>
+                    <a href="configuracion.html">Ver todos</a>
                 </div>
 
-                <div class="empty-maintenance">
-                    <span>🗓️</span>
-                    <p>No hay mantenimientos programados</p>
-                </div>
+                <table class="mini-table">
+                    <thead>
+                        <tr>
+                            <th>Actividad</th>
+                            <th>Sector / Equipo</th>
+                            <th>Estado</th>
+                        </tr>
+                    </thead>
+
+                    <tbody>
+                        <tr>
+                            <td>Limpieza de tanque</td>
+                            <td>Tanque principal</td>
+                            <td>
+                                <span class="badge pending">Programado</span>
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <td>Revisión de válvulas</td>
+                            <td>Sectores A-F</td>
+                            <td>
+                                <span class="badge info">Pendiente</span>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
 
             </div>
 
             <!-- REPORTES -->
+            <div class="panel">
 
-            <div class="panel reports-panel">
+                <div class="panel-header">
+                    <div>
+                        <h2>Reportes</h2>
+                        <p>Genera reportes del sistema</p>
+                    </div>
 
-                <div class="alert-header">
-                    <div class="alert-icon">📄</div>
-                    <h3>Reportes</h3>
+                    <a href="reportes.html">Ver todos</a>
                 </div>
 
-                <p>No hay reportes generados</p>
+                <div class="report-form">
 
-                <select>
-                    <option>Seleccione un reporte</option>
-                    <option>Reporte de familias</option>
-                    <option>Reporte de distribución</option>
-                    <option>Reporte de incidencias</option>
-                </select>
+                    <label for="tipoReporteDashboard">Tipo de reporte</label>
+                    <select id="tipoReporteDashboard">
+                        <option value="general">Reporte general</option>
+                        <option value="familias">Familias</option>
+                        <option value="incidencias">Incidencias</option>
+                        <option value="tanques">Tanques</option>
+                        <option value="distribucion">Distribución</option>
+                    </select>
+
+                    <label for="periodoReporteDashboard">Periodo</label>
+                    <select id="periodoReporteDashboard">
+                        <option>Últimos 7 días</option>
+                        <option>Este mes</option>
+                        <option>Todo el registro</option>
+                    </select>
+
+                    <button id="btnIrReportes">
+                        📊 Generar reporte
+                    </button>
+
+                    <div class="note">
+                        ℹ Los reportes se generan desde el módulo Reportes y se guardan en PostgreSQL.
+                    </div>
+
+                </div>
 
             </div>
 
@@ -276,6 +248,12 @@
     </main>
 
 </div>
+
+<script src="sidebar.js"></script>
+<script>
+    cargarSidebar('inicio');
+</script>
+<script src="dashboard.js"></script>
 
 </body>
 </html>
